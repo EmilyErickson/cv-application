@@ -170,10 +170,11 @@ svg {
 }
 
 
-.sidebar-education {
+.sidebar-education, .education {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  text-align: right;
   gap: 5px;
 }
 
@@ -182,11 +183,7 @@ svg {
   background-color: white;
   padding: 8px;
 }
-/* 
-.preview-main h2 {
-  margin: 5px;
-} */
- 
+
 .previous-job {
   display: flex;
   flex-direction: column;
