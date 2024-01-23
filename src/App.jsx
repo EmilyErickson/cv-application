@@ -22,7 +22,7 @@ function App() {
     setPersonalInfo(newInfo);
   }
   
-  const [experiencesInfo, setExperiencesInfo] = useState([    
+  const [experiencesArray, setExperiencesInfo] = useState([    
     {
       company: "Tech Innovators, Inc.",
       position: "Software Development Engineer",
@@ -42,14 +42,14 @@ function App() {
   ])
 
   function addNewExperience(newExperience) {
-    const updatedExperiencesInfo = [...experiencesInfo, newExperience];
+    const updatedExperiencesInfo = [...experiencesArray, newExperience];
     setExperiencesInfo(updatedExperiencesInfo);
   }
 
 
   function updateThisExperience(inputValue, newInfo, experience) {
     experience[inputValue] = newInfo
-    setExperiencesInfo([...experiencesInfo])
+    setExperiencesInfo([...experiencesArray])
   }
 
   const [educationsArray, setEducationInfo] = useState([
@@ -80,10 +80,10 @@ function addNewEducation(newEducation) {
       <div className='input-form'>
         <GeneralInfo personalInfo={personalInfo} updatePersonalInfo={updatePersonalInfo}/>
         <Education educationsArray={educationsArray} updateThisEducation={updateThisEducation} addNewEducation={addNewEducation}/>
-        <Experience experiencesInfo={experiencesInfo} updateThisExperience={updateThisExperience} addNewExperience={addNewExperience}/>
+        <Experience experiencesArray={experiencesArray} updateThisExperience={updateThisExperience} addNewExperience={addNewExperience}/>
       </div>
       <div>
-        <Preview personalInfo={personalInfo} educationsArray={educationsArray} experiencesInfo={experiencesInfo} />
+        <Preview personalInfo={personalInfo} educationsArray={educationsArray} experiencesArray={experiencesArray} />
       </div>
     </div>
   )
