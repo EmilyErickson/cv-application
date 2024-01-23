@@ -5,17 +5,17 @@ import PropTypes from 'prop-types';
 
 
 
-export default function Experience ({ experiencesInfo, updateThisExperience, addNewExperience}) {
+export default function Experience ({ experiencesArray, updateThisExperience, addNewExperience}) {
 
     Experience.propTypes = {
-        experiencesInfo: PropTypes.array.isRequired,
+        experiencesArray: PropTypes.array.isRequired,
         updateThisExperience: PropTypes.func.isRequired,
         addNewExperience: PropTypes.func.isRequired,
       };
 
 
     function handleInputChange(key, inputName, value) {
-        let thisExperience = experiencesInfo.find(experience => experience.key === key)
+        let thisExperience = experiencesArray.find(experience => experience.key === key)
         updateThisExperience(inputName, value, thisExperience)
     }
 
@@ -105,12 +105,11 @@ function addExperience() {
 }
 
 
-    function ExperienceForm({ experienceInfo, myKey }) {
+    function ExperienceForm({ experienceInfo }) {
 
 
         ExperienceForm.propTypes = {
             experienceInfo: PropTypes.object.isRequired,
-            myKey: PropTypes.element.isRequired
           };
 
         const [isActive, setIsActive] = useState(true);
@@ -120,7 +119,7 @@ function addExperience() {
           };
 
         return(
-        <div id={myKey} className={isActive ? 'active experience-form form' : 'inactive experience-form form'}>
+        <div id={experienceInfo.key} className={isActive ? 'active experience-form form' : 'inactive experience-form form'}>
         <button className='btn' onClick={toggleClass}><svg className='eye' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>eye-outline</title><path d="M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9M12,4.5C17,4.5 21.27,7.61 23,12C21.27,16.39 17,19.5 12,19.5C7,19.5 2.73,16.39 1,12C2.73,7.61 7,4.5 12,4.5M3.18,12C4.83,15.36 8.24,17.5 12,17.5C15.76,17.5 19.17,15.36 20.82,12C19.17,8.64 15.76,6.5 12,6.5C8.24,6.5 4.83,8.64 3.18,12Z" /></svg></button>
         <span className={isActive ? 'hidden' : 'show company-name'}>{experienceInfo.company}</span>
         <CompanyInput className={isActive ? 'show' : 'hidden'} experienceInfo={experienceInfo}/>
@@ -139,7 +138,7 @@ function addExperience() {
 
    return (
         <>
-        {experiencesInfo.map((experience, index) => (
+        {experiencesArray.map((experience, index) => (
             <div key={experience.key}>
             <ExperienceForm experienceInfo={experience} key={experience.key}
             addNewExperience={(newExperience) => addNewExperience(index, newExperience)}/>  
