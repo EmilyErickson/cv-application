@@ -1,12 +1,12 @@
 import './index.css'
 import PropTypes from 'prop-types';
 
-export default function Preview({ personalInfo, educationsArray, experiencesInfo}) {
+export default function Preview({ personalInfo, educationsArray, experiencesArray}) {
 
     Preview.propTypes = {
         personalInfo: PropTypes.object.isRequired,
         educationsArray: PropTypes.array.isRequired,
-        experiencesInfo: PropTypes.array.isRequired,
+        experiencesArray: PropTypes.array.isRequired,
       };
       
 
@@ -56,7 +56,7 @@ export default function Preview({ personalInfo, educationsArray, experiencesInfo
                 <div className='experience'>
                     <h2>Professional Experience</h2>
                     <>
-                    {experiencesInfo.map((experience) => (
+                    {experiencesArray.map((experience) => (
                         <div className='previous-job' id={experience.key} key={experience.key}>
                             <span className='previous-position'>{experience.position}</span>
                             <span className='previous-company'>{experience.company}</span> 
