@@ -1,49 +1,20 @@
-// import { useState } from 'react';
 import './index.css'
+import PropTypes from 'prop-types';
 
+export default function Preview({ personalInfo, educationInfo, experiencesInfo}) {
 
-export default function Preview() {
-
-    const personalInfo = {    
-            name: "Amanda Johnson",
-            email: "amanda.johnson@gmail.com",
-            phone: "987-123-4560",
-            location: "Chicago, USA"
-    }
-
-    const currentExperienceInfo = {    
-        company: "Tech Innovators, Inc.",
-        position: "Software Development Engineer",
-        startDate: "2019",
-        endDate: "current",
-        location: "Austin, TX, USA",
-        description: "Developed and maintained robust and scalable web applications using technologies such as React.js, Node.js, and MongoDB. Collaborated with cross-functional teams to gather requirements, analyze needs, and deliver high-quality software solutions. Implemented RESTful APIs for efficient communication between front-end and back-end systems."
-    }
-
-    const firstExperienceInfo = {
-        company: "CodeCrafters Ltd.",
-        position: "Junior Full Stack Developer",
-        startDate: "2017",
-        endDate: "2019",
-        location: "Austin, TX, USA",
-        description: "Designed and implemented responsive and user-friendly front-end interfaces using HTML, CSS, and JavaScript frameworks. Developed server-side logic and back-end components using Node.js and Express. Utilized version control systems (Git) to manage and track changes in codebase."
-
-    }
-
-    const educationInfo = {    
-        school: "Georgia Institute of Technology",
-        degree: "Computer Science",
-        startDate: "2013",
-        endDate: "2017",
-        location: "Atlanta, GA"
-    }
-
+    Preview.propTypes = {
+        personalInfo: PropTypes.object.isRequired,
+        educationInfo: PropTypes.object.isRequired,
+        experiencesInfo: PropTypes.array.isRequired,
+      };
+      
 
     function PreviewHeader() {
         return (
             <div className="preview-header">
                 <h1 className='header-name'>{personalInfo.name}</h1>
-                <p className="header-position">{currentExperienceInfo.position}</p>
+                <p className="header-position">{personalInfo.title}</p>
             </div>
     )
     }
@@ -78,18 +49,16 @@ export default function Preview() {
             <div className="preview-main">
                 <div className='experience'>
                     <h2>Professional Experience</h2>
-                    <div className='previous-job'>
-                        <span className='previous-position'>{currentExperienceInfo.position}</span>
-                        <span className='previous-company'>{currentExperienceInfo.company}</span> 
-                        <span className='job-dates'>{currentExperienceInfo.startDate} - {currentExperienceInfo.endDate}</span> 
-                        <p className='previous-job-description'>{currentExperienceInfo.description}</p>
-                    </div>
-                    <div className='previous-job'>
-                        <span className='previous-position'>{firstExperienceInfo.position}</span>
-                        <span className='previous-company'>{firstExperienceInfo.company}</span> 
-                        <span className='job-dates'>{firstExperienceInfo.startDate} - {firstExperienceInfo.endDate}</span> 
-                        <p className='previous-job-description'> {firstExperienceInfo.description}</p>
-                    </div>
+                    <>
+                    {experiencesInfo.map((experience) => (
+                        <div className='previous-job' id={experience.key} key={experience.key}>
+                        <span className='previous-position'>{experience.position}</span>
+                        <span className='previous-company'>{experience.company}</span> 
+                        <span className='job-dates'>{experience.startDate} - {experience.endDate}</span> 
+                        <p className='previous-job-description'>{experience.description}</p>
+                        </div>
+                    ))}
+                    </>
                 </div>
             </div>
             )
@@ -102,4 +71,5 @@ export default function Preview() {
         <MainContentPreview />
     </div>
    )
+
 }
