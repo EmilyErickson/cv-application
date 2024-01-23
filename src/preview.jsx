@@ -1,11 +1,11 @@
 import './index.css'
 import PropTypes from 'prop-types';
 
-export default function Preview({ personalInfo, educationInfo, experiencesInfo}) {
+export default function Preview({ personalInfo, educationsArray, experiencesInfo}) {
 
     Preview.propTypes = {
         personalInfo: PropTypes.object.isRequired,
-        educationInfo: PropTypes.object.isRequired,
+        educationsArray: PropTypes.array.isRequired,
         experiencesInfo: PropTypes.array.isRequired,
       };
       
@@ -35,10 +35,16 @@ export default function Preview({ personalInfo, educationInfo, experiencesInfo})
                 </div>
                 <div className='sidebar-education'>
                     <h2>Education</h2>
-                    <span className='sidebar-degree'>{educationInfo.degree}</span> 
-                    <span className='sidebar-school'>{educationInfo.school}</span>
-                    <span className='sidebar-dates'>{educationInfo.startDate} - {educationInfo.endDate}</span>
-                    <span className='sidebar-school-location'>{educationInfo.location}</span> 
+                    <>
+                    {educationsArray.map((education) => (
+                        <div className='education' id={education.key} key={education.key}>
+                            <span className='sidebar-degree'>{education.degree}</span> 
+                            <span className='sidebar-school'>{education.school}</span>
+                            <span className='sidebar-dates'>{education.startDate} - {education.endDate}</span>
+                            <span className='sidebar-school-location'>{education.location}</span>
+                        </div>
+                    ))}
+                    </>
                 </div>
             </div>
             )
@@ -52,10 +58,10 @@ export default function Preview({ personalInfo, educationInfo, experiencesInfo})
                     <>
                     {experiencesInfo.map((experience) => (
                         <div className='previous-job' id={experience.key} key={experience.key}>
-                        <span className='previous-position'>{experience.position}</span>
-                        <span className='previous-company'>{experience.company}</span> 
-                        <span className='job-dates'>{experience.startDate} - {experience.endDate}</span> 
-                        <p className='previous-job-description'>{experience.description}</p>
+                            <span className='previous-position'>{experience.position}</span>
+                            <span className='previous-company'>{experience.company}</span> 
+                            <span className='job-dates'>{experience.startDate} - {experience.endDate}</span> 
+                            <p className='previous-job-description'>{experience.description}</p>
                         </div>
                     ))}
                     </>
