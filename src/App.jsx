@@ -47,24 +47,31 @@ function App() {
   }
 
 
-
   function updateThisExperience(inputValue, newInfo, experience) {
     experience[inputValue] = newInfo
     setExperiencesInfo([...experiencesInfo])
   }
 
-  const [educationInfo, setEducationInfo] = useState({    
-      // key: getKey,
+  const [educationsArray, setEducationInfo] = useState([
+    {    
+      key: uuidv4(),
       school: "Georgia Institute of Technology",
       degree: "Computer Science",
       startDate: "2013-05",
       endDate: "2017-05",
       location: "Atlanta, GA"
-  })
+  },])
 
-function updateEducationInfo(newEducationInfo) {
-  console.log("updateEducationInfo newInfo =", newEducationInfo)
-  setEducationInfo(newEducationInfo);
+function updateThisEducation(inputValue, newInfo, education) {
+  console.log("updateThisEducation newInfo =", newInfo)
+  education[inputValue] = newInfo
+  setEducationInfo([...educationsArray]);
+
+}
+
+function addNewEducation(newEducation) {
+  const updatedEducationArray = [...educationsArray, newEducation];
+  setEducationInfo(updatedEducationArray);
 
 }
 
@@ -72,11 +79,11 @@ function updateEducationInfo(newEducationInfo) {
     <div className='parent-container'>
       <div className='input-form'>
         <GeneralInfo personalInfo={personalInfo} updatePersonalInfo={updatePersonalInfo}/>
-        <Education educationInfo={educationInfo} updateEducationInfo={updateEducationInfo}/>
+        <Education educationsArray={educationsArray} updateThisEducation={updateThisEducation} addNewEducation={addNewEducation}/>
         <Experience experiencesInfo={experiencesInfo} updateThisExperience={updateThisExperience} addNewExperience={addNewExperience}/>
       </div>
       <div>
-        <Preview personalInfo={personalInfo} educationInfo={educationInfo} experiencesInfo={experiencesInfo} />
+        <Preview personalInfo={personalInfo} educationsArray={educationsArray} experiencesInfo={experiencesInfo} />
       </div>
     </div>
   )
