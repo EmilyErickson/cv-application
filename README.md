@@ -10,4 +10,4 @@ This React CV Builder is designed to allow users to input personal information, 
 
 ## Live Page
 
-You can find the live page here:
+You can find the live page here: https://cv-application-plum.vercel.app/
